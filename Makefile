@@ -6,14 +6,14 @@
 #    By: aheddak <aheddak@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/17 14:46:54 by aheddak           #+#    #+#              #
-#    Updated: 2022/07/17 14:47:54 by aheddak          ###   ########.fr        #
+#    Updated: 2022/08/07 02:43:33 by aheddak          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	=	phhilosophers
 
 BONUS	=	
-
+ 
 UTILS	=	phhilosophers.c
 
 UTILS_BONUS	= 
