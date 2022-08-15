@@ -6,7 +6,7 @@
 /*   By: aheddak <aheddak@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/17 14:46:05 by aheddak           #+#    #+#             */
-/*   Updated: 2022/08/14 06:04:26 by aheddak          ###   ########.fr       */
+/*   Updated: 2022/08/15 09:52:51 by aheddak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,8 @@ typedef struct s_philo
 	int				fork_right;
 	unsigned long 	last_meal;
 	unsigned int 	meals_count;
-	t_data			data;
+	pthread_t		th;
+	t_data			*data;
 }		t_philo;
 int	atoi_handle(char *av);
 int	ft_strcmp(char *s1, char *s2);

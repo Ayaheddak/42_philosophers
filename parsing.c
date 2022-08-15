@@ -6,7 +6,7 @@
 /*   By: aheddak <aheddak@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/13 05:01:06 by aheddak           #+#    #+#             */
-/*   Updated: 2022/08/14 06:09:46 by aheddak          ###   ########.fr       */
+/*   Updated: 2022/08/15 10:01:13 by aheddak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,25 +28,31 @@
 // 	}
 // }
 
-// void print_to_screen(int i, char *s)
+// void print_to_screen()
 // {
 // }
-void	philo_eat(t_data *data)
+void	philo_eat(t_philo *philo)
 {
-	pthread_mutex_lock(&data->forks[data->philos->fork_left]);
-	printf("philo ---> %d taken left fork %d  \n",data->philos->id,data->philos->fork_left);
-	pthread_mutex_lock(&data->forks[data->philos->fork_right]);
-	printf("philo ---> %d taken right fork %d  \n",data->philos->id,data->philos->fork_right );
-	printf("philo ---> %d is eating \n",data->philos->id);
-	sleep(5);
-	pthread_mutex_unlock(&data->forks[data->philos->fork_left]);
-	pthread_mutex_unlock(&data->forks[data->philos->fork_right]);
+	if (philo->id % 2)
+		usleep(100);
+	pthread_mutex_lock(&philo->data->forks[philo->fork_left]);
+	pthread_mutex_lock(&philo->data->print);
+	printf("philo ---> %d taken left fork %d  \n",philo->id, philo->fork_left);
+	pthread_mutex_unlock(&philo->data->print);
+	pthread_mutex_lock(&philo->data->forks[philo->fork_right]);
+	pthread_mutex_lock(&philo->data->print);
+	printf("philo ---> %d taken right fork %d  \n",philo->id, philo->fork_right);
+	pthread_mutex_unlock(&philo->data->print);
+	printf("philo ---> %d is eating \n",philo->id);
+	usleep(1000);
+	pthread_mutex_unlock(&philo->data->forks[philo->fork_left]);
+	pthread_mutex_unlock(&philo->data->forks[philo->fork_right]);
 }
-void	*routine(t_data *data)
+void	*routine(t_philo	*philo)
 {
 	while (1)
 	{
-		philo_eat(data);
+		philo_eat(philo);
 	}
 }
 void	philo_thing(t_philo *philo)
@@ -74,6 +80,7 @@ void init_philos(t_data *data)
 		data->philos[i].fork_left = i;
 		// printf("nb left fork ---->%d\n", data->philos[i].fork_left );
 		data->philos[i].fork_right = (i + 1) % data->nb_of_philo;
+		data->philos[i].data = data;
 		// printf("nb right fork ---->%d\n", data->philos[i].fork_right);	
 		i++;
 	}
@@ -89,8 +96,17 @@ int main(int ac, char *av[])
 	{
 		data.nb_of_philo = atoi_handle(av[1]);
 		init_philos(&data);
-		routine(&data);
+		// routine(&data);
+		while (i < data.nb_of_philo)
+		{
+			pthread_create(&(data.philos[i].th), NULL, (void *)routine, &data.philos[i]);
+			usleep(1000);
+	 		i++;
+		}		
 	}
+	i = -1;
+	while (++i < data.nb_of_philo)
+		pthread_join(data.philos[i].th, NULL);
 	// pthread_mutex_init(&mutex, NULL);
 	// data.tab_philos = malloc(sizeof(pthread_t) *( data.nb_of_philo + 1));
 	// while (i < data.nb_of_philo)
@@ -100,7 +116,7 @@ int main(int ac, char *av[])
 	//  		return(1);
 	//  	}
 	//  	i++;
-	// }
+	//}
 	// i = 0;
 	// while (i < data.nb_of_philo)
 	// {
