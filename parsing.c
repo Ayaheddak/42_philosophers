@@ -6,7 +6,7 @@
 /*   By: aheddak <aheddak@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/13 05:01:06 by aheddak           #+#    #+#             */
-/*   Updated: 2022/08/15 10:01:13 by aheddak          ###   ########.fr       */
+/*   Updated: 2022/08/16 03:30:05 by aheddak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,26 +33,37 @@
 // }
 void	philo_eat(t_philo *philo)
 {
-	if (philo->id % 2)
-		usleep(100);
+
 	pthread_mutex_lock(&philo->data->forks[philo->fork_left]);
-	pthread_mutex_lock(&philo->data->print);
+	//pthread_mutex_lock(&philo->data->print);
 	printf("philo ---> %d taken left fork %d  \n",philo->id, philo->fork_left);
-	pthread_mutex_unlock(&philo->data->print);
+	//pthread_mutex_unlock(&philo->data->print);
 	pthread_mutex_lock(&philo->data->forks[philo->fork_right]);
-	pthread_mutex_lock(&philo->data->print);
+	//pthread_mutex_lock(&philo->data->print);
 	printf("philo ---> %d taken right fork %d  \n",philo->id, philo->fork_right);
-	pthread_mutex_unlock(&philo->data->print);
-	printf("philo ---> %d is eating \n",philo->id);
+	//pthread_mutex_unlock(&philo->data->print);
+		printf("philo ---> %d is eating \n",philo->id);
+		//akir mara cla = get time now;
+	//this philo meal count++
+	//if (this philo meal count == info->meal count )
+		//philo shba3++
 	usleep(1000);
 	pthread_mutex_unlock(&philo->data->forks[philo->fork_left]);
+// printf("philo ---> %d unlocked left fork %d  \n",philo->id, philo->fork_left);
 	pthread_mutex_unlock(&philo->data->forks[philo->fork_right]);
+// printf("philo ---> %d unlocked right fork %d  \n",philo->id, philo->fork_right);
 }
+
 void	*routine(t_philo	*philo)
 {
+	if (philo->id % 2 == 0)
+		usleep(500);
 	while (1)
 	{
 		philo_eat(philo);
+		//philo sleep usleep(1000);
+		//philo think
+		
 	}
 }
 void	philo_thing(t_philo *philo)
@@ -95,6 +106,9 @@ int main(int ac, char *av[])
 	if (ac == 2)
 	{
 		data.nb_of_philo = atoi_handle(av[1]);
+		// data.tm_to_die = atoi_handle(av[2]);
+		// data.tm_to_eat =atoi_handle(av[3]);
+		// data.nb_of_ms_eat=atoi_handle(av[4]);
 		init_philos(&data);
 		// routine(&data);
 		while (i < data.nb_of_philo)
@@ -105,8 +119,29 @@ int main(int ac, char *av[])
 		}		
 	}
 	i = -1;
-	while (++i < data.nb_of_philo)
-		pthread_join(data.philos[i].th, NULL);
+	// while (++i < data.nb_of_philo)
+	// 	pthread_join(data.philos[i].th, NULL);
+
+	while(1)
+	{
+		int j;
+
+		j = 0;
+		while(1)/// loop over philos
+		{
+			/// if (get time - akkiramara kla > time to die)
+			//{
+				//mat lphilo
+				//exit	
+			//}
+			//if (shba3 == num of philos)
+			//{
+				//mat lphilo
+				//exit	
+			//}
+			
+		}
+	}
 	// pthread_mutex_init(&mutex, NULL);
 	// data.tab_philos = malloc(sizeof(pthread_t) *( data.nb_of_philo + 1));
 	// while (i < data.nb_of_philo)
