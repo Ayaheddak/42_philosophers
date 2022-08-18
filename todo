@@ -1,6 +1,0 @@
-/*-------------------routine-----------------------*/
- -> check if forks right and left allowed
- -> lock left fork
- -> prinf 
- -> lock right fork
- -> sleep 
