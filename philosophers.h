@@ -6,7 +6,7 @@
 /*   By: aheddak <aheddak@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/17 14:46:05 by aheddak           #+#    #+#             */
-/*   Updated: 2022/08/18 08:01:37 by aheddak          ###   ########.fr       */
+/*   Updated: 2022/08/18 22:42:56 by aheddak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ typedef struct s_data
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	print;//
 	int				shba3;//
+	uint64_t		start;
 }		t_data;
 
 typedef struct s_philo
@@ -37,8 +38,7 @@ typedef struct s_philo
 	int				id;
 	int				fork_left;
 	int				fork_right;
-	unsigned long 	last_meal;
-	uint64_t		time_start;
+	uint64_t 	last_meal;
 	unsigned int 	meals_count;
 	pthread_mutex_t	is_eating;
 	pthread_t		th;

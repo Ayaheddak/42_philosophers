@@ -6,7 +6,7 @@
 /*   By: aheddak <aheddak@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 05:29:25 by aheddak           #+#    #+#             */
-/*   Updated: 2022/08/14 06:04:15 by aheddak          ###   ########.fr       */
+/*   Updated: 2022/08/21 14:53:37 by aheddak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	ft_error(void)
 {
 	printf("Error\n");
-	exit(1);
+	exit(1);//roooood lbaaaal forb
 }
 
 int	ft_strlen(char *s)
