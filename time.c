@@ -6,24 +6,24 @@
 /*   By: aheddak <aheddak@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 03:50:46 by aheddak           #+#    #+#             */
-/*   Updated: 2022/08/21 15:04:30 by aheddak          ###   ########.fr       */
+/*   Updated: 2022/08/21 15:44:58 by aheddak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-uint64_t	get_time()//get to mili
+uint64_t	get_time(void)//get to mili
 {
-	struct timeval current_time;
+	struct timeval	current_time;
 
 	gettimeofday(&current_time, NULL);
 	return ((current_time.tv_sec * 1000) + (current_time.tv_usec / 1000));
 }
 
-void	timer(int	time)
+void	timer(int time)
 {
-	uint64_t start;
-	int	epsilon ;
+	uint64_t	start;
+	int			epsilon;
 
 	epsilon = 100;
 	start = get_time();
@@ -39,7 +39,6 @@ void	print_to_screen(char *string, t_philo *philo)
 	pthread_mutex_lock(&philo->data->print);
 	printf("%llu philo %d%s\n", time, philo->id, string);
 	pthread_mutex_unlock(&philo->data->print);
-	
 }
 
 // int main() {

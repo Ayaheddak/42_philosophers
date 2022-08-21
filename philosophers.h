@@ -6,7 +6,7 @@
 /*   By: aheddak <aheddak@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/17 14:46:05 by aheddak           #+#    #+#             */
-/*   Updated: 2022/08/18 22:42:56 by aheddak          ###   ########.fr       */
+/*   Updated: 2022/08/21 15:45:05 by aheddak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,10 @@ uint64_t	get_time();
 void	print_to_screen(char *string, t_philo *philo);
 void	timer(int time);
 void	philo_eat(t_philo *philo);
-void	philo_thing(t_philo *philo);
+void	philo_think(t_philo *philo);
 void	philo_sleep(t_philo *philo);
 void	*routine(t_philo	*philo);
+void	timer(int time);
+uint64_t	get_time(void);
+void	print_to_screen(char *string, t_philo *philo);
 # endif
