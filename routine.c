@@ -6,7 +6,7 @@
 /*   By: aheddak <aheddak@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 05:30:34 by aheddak           #+#    #+#             */
-/*   Updated: 2022/08/21 16:21:51 by aheddak          ###   ########.fr       */
+/*   Updated: 2022/08/21 17:56:53 by aheddak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,6 @@ void	philo_eat(t_philo *philo)
 	timer(philo->data->tm_to_eat);
 	philo->last_meal = get_time();
 	philo->meals_count++;
-	printf("meals count ----> %d philo ---> %d \n", philo->meals_count, philo->id);
-	// if (philo->meals_count >= philo->data->nb_of_ms_eat)
-	// {
-	// 	print_to_screen(" has died ", philo);
-	// 	exit(1);
-	// }
 	pthread_mutex_unlock(&philo->data->forks[philo->fork_left]);
 	pthread_mutex_unlock(&philo->data->forks[philo->fork_right]);
 }
