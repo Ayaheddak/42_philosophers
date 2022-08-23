@@ -6,7 +6,7 @@
 /*   By: aheddak <aheddak@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/13 05:01:06 by aheddak           #+#    #+#             */
-/*   Updated: 2022/08/23 01:23:32 by aheddak          ###   ########.fr       */
+/*   Updated: 2022/08/23 07:57:30 by aheddak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	ft_error(void)
 {
 	printf("Error\n");
-	exit(1);//roooood lbaaaal forbidden
+	return (1);
 }
 
 int	ft_strlen(char *s)
@@ -53,4 +53,3 @@ int	atoi_handle(char *av)
 		return (ft_error());
 	return (res);
 }
-

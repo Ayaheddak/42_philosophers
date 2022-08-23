@@ -6,13 +6,13 @@
 /*   By: aheddak <aheddak@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 03:50:46 by aheddak           #+#    #+#             */
-/*   Updated: 2022/08/23 02:14:17 by aheddak          ###   ########.fr       */
+/*   Updated: 2022/08/23 07:58:03 by aheddak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-uint64_t	get_time(void)//get to mili
+uint64_t	get_time(void)
 {
 	struct timeval	current_time;
 
