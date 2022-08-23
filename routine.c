@@ -6,7 +6,7 @@
 /*   By: aheddak <aheddak@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 05:30:34 by aheddak           #+#    #+#             */
-/*   Updated: 2022/08/21 17:56:53 by aheddak          ###   ########.fr       */
+/*   Updated: 2022/08/23 01:07:47 by aheddak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	philo_sleep(t_philo *philo)
 
 void	*routine(t_philo	*philo)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (philo->id % 2 == 0)

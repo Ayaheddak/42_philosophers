@@ -6,13 +6,42 @@
 /*   By: aheddak <aheddak@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/13 05:00:31 by aheddak           #+#    #+#             */
-/*   Updated: 2022/08/21 18:24:19 by aheddak          ###   ########.fr       */
+/*   Updated: 2022/08/23 02:38:44 by aheddak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
 /*---------------------initialization------------------------*/
+// void	supervasieur(t_data *data)
+// {
+// 	int count;
+// 	int	i;
+
+// 	count = 0;
+// 	i = 0;
+// 	while (1)
+// 	{
+// 		i = 0;
+// 		while (i < data->nb_of_philo)
+// 		{
+// 			if (get_time() - data->philos[i].last_meal >= data->tm_to_die)
+// 			{
+// 				print_to_screen(" has died ", &data->philos[i]);
+// 				return;
+// 			}
+// 			if (data->nb_of_ms_eat >= 0 && data->philos[i].meals_count >= data->nb_of_ms_eat && data->philos[i].lock == 0)
+// 			{
+// 				count++;
+// 				data->philos[i].lock = 1;
+// 			}
+// 			i++;
+// 		}
+// 		if (count == data->nb_of_philo)
+// 				return;
+// 	}	
+// }
+
 void	init_philos(t_data *data)
 {
 	int	i;
@@ -41,18 +70,15 @@ int	main(int ac, char *av[])
 	int			i;
 
 	count  = 0;
-
 	i = 0;
-	if (ac > 1)
+	if (ac > 1 && ac <= 6)
 	{
 		data.nb_of_philo = atoi_handle(av[1]);
 		data.tm_to_die = atoi_handle(av[2]);
 		data.tm_to_eat = atoi_handle(av[3]);
 		data.tm_to_sleep = atoi_handle(av[4]);
 		if (ac == 6)
-			data.nb_of_ms_eat = atoi_handle(av[5]);
-		else
-			data.nb_of_ms_eat = -1;
+		 	data.nb_of_ms_eat = atoi_handle(av[5]);
 		init_philos(&data);
 		data.start = get_time();
 		while (i < data.nb_of_philo)
@@ -61,17 +87,17 @@ int	main(int ac, char *av[])
 			i++;
 		}	
 	}
-	while (1)//main loop
+	while (1)
 	{
 		i = 0;
 		while (i < data.nb_of_philo)
 		{
-			if (get_time() - data.philos[i].last_meal >= data.tm_to_die)
+			if (get_time() - data.philos[i].last_meal >= (uint64_t)data.tm_to_die)
 			{
 				print_to_screen(" has died ", &data.philos[i]);
 				exit(0);
 			}
-			if (data.nb_of_ms_eat >= 0 && data.philos[i].meals_count >= data.nb_of_ms_eat && data.philos[i].lock == 0)
+			if (data.philos[i].meals_count >= (uint64_t)data.nb_of_ms_eat && data.philos[i].lock == 0)
 			{
 				count++;
 				data.philos[i].lock = 1;

@@ -6,7 +6,7 @@
 /*   By: aheddak <aheddak@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 03:50:46 by aheddak           #+#    #+#             */
-/*   Updated: 2022/08/21 15:44:58 by aheddak          ###   ########.fr       */
+/*   Updated: 2022/08/23 02:14:17 by aheddak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	timer(int time)
 
 	epsilon = 100;
 	start = get_time();
-	while (get_time() - start < time)
+	while (get_time() - start < (uint64_t)time)
 		usleep(epsilon);
 }
 
@@ -40,12 +40,3 @@ void	print_to_screen(char *string, t_philo *philo)
 	printf("%llu philo %d%s\n", time, philo->id, string);
 	pthread_mutex_unlock(&philo->data->print);
 }
-
-// int main() {
-//   struct timeval current_time;
-//   gettimeofday(&current_time, NULL);
-//   printf("seconds : %ld\n micro seconds : %ld",
-//     current_time.tv_sec, current_time.tv_usec);
-
-//   return 0;
-// }

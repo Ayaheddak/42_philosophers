@@ -6,23 +6,17 @@
 #    By: aheddak <aheddak@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/17 14:46:54 by aheddak           #+#    #+#              #
-#    Updated: 2022/08/07 02:43:33 by aheddak          ###   ########.fr        #
+#    Updated: 2022/08/23 01:46:22 by aheddak          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	=	phhilosophers
+NAME	=	philo
 
-BONUS	=	
- 
-UTILS	=	phhilosophers.c
-
-UTILS_BONUS	= 
+UTILS	=	time.c parsing.c philosophers.c routine.c
 
 FLAGS	=	-Wall -Wextra -Werror
 
 OBJCT	=	${UTILS:.c=.o}
-
-OBJCTB	=	${UTILS_BONUS:.c=.o}
 
 RM		=	rm -f
 
@@ -33,15 +27,10 @@ all		:	$(NAME)
 $(NAME)	:	$(OBJCT)	
 	$(CC) $(FLAGS) $(UTILS) -o $(NAME)
 
-bonus : $(BONUS)
-
-$(BONUS) : $(OBJCTB)
-	$(CC) $(FLAGS) $(UTILS_BONUS) -o $(BONUS)
-
 clean :
-	${RM} $(OBJCT) $(OBJCTB)
+	${RM} $(OBJCT)
 
 fclean : clean
-	${RM} ${NAME} ${BONUS}
+	${RM} ${NAME}
 
 re : fclean all
