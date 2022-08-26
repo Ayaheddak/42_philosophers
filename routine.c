@@ -6,13 +6,12 @@
 /*   By: aheddak <aheddak@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/14 05:30:34 by aheddak           #+#    #+#             */
-/*   Updated: 2022/08/23 01:07:47 by aheddak          ###   ########.fr       */
+/*   Updated: 2022/08/26 05:46:45 by aheddak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-/*-------------------routine-----------------------*/
 void	philo_eat(t_philo *philo)
 {
 	pthread_mutex_lock(&philo->data->forks[philo->fork_left]);

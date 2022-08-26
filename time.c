@@ -6,7 +6,7 @@
 /*   By: aheddak <aheddak@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 03:50:46 by aheddak           #+#    #+#             */
-/*   Updated: 2022/08/23 07:58:03 by aheddak          ###   ########.fr       */
+/*   Updated: 2022/08/26 05:47:28 by aheddak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ void	print_to_screen(char *string, t_philo *philo)
 {
 	uint64_t	time;
 
-	time = get_time() - philo->data->start;
 	pthread_mutex_lock(&philo->data->print);
+	time = get_time() - philo->data->start;
 	printf("%llu philo %d%s\n", time, philo->id, string);
 	pthread_mutex_unlock(&philo->data->print);
 }

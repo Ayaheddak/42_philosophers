@@ -6,7 +6,7 @@
 /*   By: aheddak <aheddak@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/13 05:00:31 by aheddak           #+#    #+#             */
-/*   Updated: 2022/08/23 07:55:02 by aheddak          ###   ########.fr       */
+/*   Updated: 2022/08/26 05:55:10 by aheddak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ int	main(int ac, char *av[])
 			pthread_create(&(data->philos[i].th), NULL,
 				(void *)routine, (&(data->philos[i])));
 			i++;
-		}	
+		}
 	}
 	while (1)
 	{
@@ -96,3 +96,5 @@ int	main(int ac, char *av[])
 	}
 	return (0);
 }
+//system("leaks philo");
+/* -fsanitize=thread */
