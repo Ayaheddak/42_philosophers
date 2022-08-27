@@ -6,7 +6,7 @@
 /*   By: aheddak <aheddak@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/17 14:46:05 by aheddak           #+#    #+#             */
-/*   Updated: 2022/08/26 05:54:41 by aheddak          ###   ########.fr       */
+/*   Updated: 2022/08/27 15:32:51 by aheddak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ typedef struct s_philo
 	uint64_t		last_meal;
 	uint64_t		meals_count;
 	pthread_mutex_t	is_eating;
+	pthread_mutex_t	tm_last_meals;
+	pthread_mutex_t	count_meals;
 	pthread_t		th;
 	int				lock;
 	t_data			*data;

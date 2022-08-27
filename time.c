@@ -6,7 +6,7 @@
 /*   By: aheddak <aheddak@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 03:50:46 by aheddak           #+#    #+#             */
-/*   Updated: 2022/08/26 05:47:28 by aheddak          ###   ########.fr       */
+/*   Updated: 2022/08/27 15:22:50 by aheddak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,15 @@ void	print_to_screen(char *string, t_philo *philo)
 	pthread_mutex_lock(&philo->data->print);
 	time = get_time() - philo->data->start;
 	printf("%llu philo %d%s\n", time, philo->id, string);
+	if (strcmp(string, " has died ") == 0)
+	{
+		//printf("ayaaaa\n\n\n\n\n");
+		////pthread_mutex_unlock(&philo->tm_last_meals);
+		//pthread_mutex_lock(&philo->data->jsp);
+		//pthread_mutex_unlock(&philo->data->print);
+	//pthread_mutex_unlock(&philo->is_eating);
+//	pthread_mutex_unlock(&philo->data->print);
+		return;
+	 }
 	pthread_mutex_unlock(&philo->data->print);
 }
