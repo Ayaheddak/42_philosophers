@@ -6,7 +6,7 @@
 /*   By: aheddak <aheddak@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/17 14:46:05 by aheddak           #+#    #+#             */
-/*   Updated: 2022/08/27 16:21:22 by aheddak          ###   ########.fr       */
+/*   Updated: 2022/08/28 16:40:17 by aheddak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@ typedef struct s_philo
 	int				id;
 	int				fork_left;
 	int				fork_right;
-	uint64_t		last_meal;
-	uint64_t		meals_count;
+	int				last_meal;
+	int				meals_count;
 	int				iseating;
 	pthread_mutex_t	is_eating;
 	pthread_mutex_t	tm_last_meals;

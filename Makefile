@@ -6,15 +6,17 @@
 #    By: aheddak <aheddak@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/07/17 14:46:54 by aheddak           #+#    #+#              #
-#    Updated: 2022/08/27 16:31:37 by aheddak          ###   ########.fr        #
+#    Updated: 2022/08/28 17:46:22 by aheddak          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	=	philo
 
+THREADFLAG = -fsanitize=thread -g -pthread
+
 UTILS	=	time.c parsing.c philosophers.c routine.c
 
-FLAGS	=	-Wall -Wextra -Werror -fsanitize=thread -g -pthread
+FLAGS	=	-Wall -Wextra -Werror 
 
 OBJCT	=	${UTILS:.c=.o}
 
@@ -30,7 +32,7 @@ $(NAME)	:	$(OBJCT)
 clean :
 	${RM} $(OBJCT)
 
-fclean : clean
+fclean :	clean
 	${RM} ${NAME}
 
 re : fclean all

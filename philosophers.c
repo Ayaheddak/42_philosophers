@@ -6,7 +6,7 @@
 /*   By: aheddak <aheddak@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/13 05:00:31 by aheddak           #+#    #+#             */
-/*   Updated: 2022/08/27 16:31:00 by aheddak          ###   ########.fr       */
+/*   Updated: 2022/08/28 17:45:21 by aheddak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,39 +58,23 @@ int	main_thread(t_data *data)
 	i = 0;
 	while (i < data->nb_of_philo)
 	{
-		pthread_mutex_lock(&data->philos[i].is_eating);
 		pthread_mutex_lock(&data->philos[i].tm_last_meals);
-		if (get_time() - data->philos[i].last_meal >= (uint64_t)data->tm_to_die && !data->philos[i].iseating)
+		if ((int)get_time() - data->philos[i].last_meal >= data->tm_to_die)
 		{
 			print_to_screen(" has died ", &data->philos[i]);
 			return (1);
 		}
 		pthread_mutex_unlock(&data->philos[i].tm_last_meals);
-		
-		// pthread_mutex_lock(&data->philos[i].count_meals);
-		// if (data->nb_of_ms_eat > 0 && 
-		// 	data->philos[i].meals_count >= (uint64_t)data->nb_of_ms_eat && data->philos[i].lock == 0)
-		// {
-		// 	data->count++;
-		// 	printf("philo eat %d\n", data->count);
-		// 	if (data->count == data->nb_of_philo)
-		// 		return (1);
-		// 	data->philos[i].lock = 1;
-		// }
-
-			if (data->nb_of_ms_eat > 0 && 
-			data->philos[i].meals_count >= (uint64_t)data->nb_of_ms_eat)
+		pthread_mutex_lock(&data->philos[i].count_meals);
+		if (data->nb_of_ms_eat > 0 && data->philos[i].meals_count >= data->nb_of_ms_eat && data->philos[i].lock == 0 )
 		{
 			data->count++;
-			// printf("philo eat %d\n", data->count);
-			if (data->count == data->nb_of_philo)
-				return (1);
-			// data->philos[i].lock = 1;
+			data->philos[i].lock = 1;
 		}
-		// pthread_mutex_unlock(&data->philos[i].count_meals);
-		pthread_mutex_unlock(&data->philos[i].is_eating);
+		pthread_mutex_unlock(&data->philos[i].count_meals);
+		if ( data->count == data->nb_of_philo)
+			pthread_mutex_lock(&data->philos[i].is_eating);
 		i++;
-		usleep(10);
 	}
 	return (0);
 }
@@ -116,19 +100,9 @@ int	main(int ac, char *av[])
 	}
 	while (1)
 	{
-		i = 0;
-		// printf("%d\n", data->count);
-		if (main_thread(data) == 1)
-		{
-
-			//pthread_mutex_lock(&data->print);
-		//	printf("hsadasj \n\n\n\n\n\n");
-			return (0);
-			//pthread_mutex_unlock(&data->philos[i].tm_last_meals);
-			//pthread_mutex_unlock(&data->print);
-		}
-	}
+		if ( main_thread(data) == 1 || data->count == data->nb_of_philo)
+			break;
+	}system("leaks philo");
 	return (0);
 }
-//system("leaks philo");
 /* -fsanitize=thread */
