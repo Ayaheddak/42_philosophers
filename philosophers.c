@@ -6,7 +6,7 @@
 /*   By: aheddak <aheddak@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/13 05:00:31 by aheddak           #+#    #+#             */
-/*   Updated: 2022/08/28 17:45:21 by aheddak          ###   ########.fr       */
+/*   Updated: 2022/08/28 19:48:02 by aheddak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ void	init_philos(t_data *data)
 		data->philos[i].last_meal = get_time();
 		data->philos[i].meals_count = 0;
 		data->philos[i].lock = 0;
-		data->philos[i].iseating = 0;
 		i++;
 	}
 }
@@ -66,13 +65,14 @@ int	main_thread(t_data *data)
 		}
 		pthread_mutex_unlock(&data->philos[i].tm_last_meals);
 		pthread_mutex_lock(&data->philos[i].count_meals);
-		if (data->nb_of_ms_eat > 0 && data->philos[i].meals_count >= data->nb_of_ms_eat && data->philos[i].lock == 0 )
+		if (data->nb_of_ms_eat > 0 && data->philos[i].meals_count
+			>= data->nb_of_ms_eat && data->philos[i].lock == 0)
 		{
 			data->count++;
 			data->philos[i].lock = 1;
 		}
 		pthread_mutex_unlock(&data->philos[i].count_meals);
-		if ( data->count == data->nb_of_philo)
+		if (data->count == data->nb_of_philo)
 			pthread_mutex_lock(&data->philos[i].is_eating);
 		i++;
 	}
@@ -100,9 +100,10 @@ int	main(int ac, char *av[])
 	}
 	while (1)
 	{
-		if ( main_thread(data) == 1 || data->count == data->nb_of_philo)
-			break;
-	}system("leaks philo");
+		if (main_thread(data) == 1 || data->count == data->nb_of_philo)
+			break ;
+	}
 	return (0);
 }
 /* -fsanitize=thread */
+	//system("leaks philo");
