@@ -6,7 +6,7 @@
 /*   By: aheddak <aheddak@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/13 05:00:31 by aheddak           #+#    #+#             */
-/*   Updated: 2022/08/28 19:48:02 by aheddak          ###   ########.fr       */
+/*   Updated: 2022/09/01 10:45:50 by aheddak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,16 +38,22 @@ void	init_philos(t_data *data)
 	}
 }
 
-void	init_args(int ac, char *av[], t_data *data)
+int	init_args(int ac, char *av[], t_data *data)
 {
-	data->nb_of_philo = atoi_handle(av[1]);
-	data->tm_to_die = atoi_handle(av[2]);
-	data->tm_to_eat = atoi_handle(av[3]);
-	data->tm_to_sleep = atoi_handle(av[4]);
-	if (ac == 6)
-		data->nb_of_ms_eat = atoi_handle(av[5]);
+	if ((ac == 5 && atoi_handle(av[1]) >= 1 && atoi_handle(av[2]) > 0 && atoi_handle(av[3]) > 0) || ((ac == 6) && (atoi_handle(av[5]) >= 1)))
+	{
+		data->nb_of_philo = atoi_handle(av[1]);
+		data->tm_to_die = atoi_handle(av[2]);
+		data->tm_to_eat = atoi_handle(av[3]);
+		data->tm_to_sleep = atoi_handle(av[4]);
+		if (ac == 6)
+			data->nb_of_ms_eat = atoi_handle(av[5]);
+		else
+			data->nb_of_ms_eat = -1;
+	}
 	else
-		data->nb_of_ms_eat = -1;
+		return (printf("Error in Args \n"));
+	return (0);
 }
 
 int	main_thread(t_data *data)
@@ -86,17 +92,15 @@ int	main(int ac, char *av[])
 
 	i = 0;
 	data = malloc(sizeof(t_data));
-	if (ac == 5 || ac == 6)
+	if (init_args(ac, av, data))
+		return (1);
+	init_philos(data);
+	data->start = get_time();
+	while (i < data->nb_of_philo)
 	{
-		init_args(ac, av, data);
-		init_philos(data);
-		data->start = get_time();
-		while (i < data->nb_of_philo)
-		{
-			pthread_create(&(data->philos[i].th), NULL,
-				(void *)routine, (&(data->philos[i])));
-			i++;
-		}
+		pthread_create(&(data->philos[i].th), NULL,
+			(void *)routine, (&(data->philos[i])));
+		i++;
 	}
 	while (1)
 	{
@@ -105,5 +109,3 @@ int	main(int ac, char *av[])
 	}
 	return (0);
 }
-/* -fsanitize=thread */
-	//system("leaks philo");

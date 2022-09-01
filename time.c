@@ -6,7 +6,7 @@
 /*   By: aheddak <aheddak@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/18 03:50:46 by aheddak           #+#    #+#             */
-/*   Updated: 2022/08/28 19:46:19 by aheddak          ###   ########.fr       */
+/*   Updated: 2022/08/31 02:49:25 by aheddak          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	timer(int time)
 	uint64_t	start;
 	int			epsilon;
 
-	epsilon = 100;
+	epsilon = 50;
 	start = get_time();
 	while (get_time() - start < (uint64_t)time)
 		usleep(epsilon);
